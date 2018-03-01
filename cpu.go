@@ -7,6 +7,7 @@ type Cpu struct {
 	rb *Register
 	rc *Register
 	rd *Register
+	q  *Queue
 }
 
 func NewCpu() *Cpu {
@@ -15,6 +16,7 @@ func NewCpu() *Cpu {
 		rb: NewRegister(),
 		rc: NewRegister(),
 		rd: NewRegister(),
+		q:  NewQueue(),
 	}
 }
 
@@ -147,8 +149,9 @@ func (c *Cpu) SetDL(v uint8) {
 }
 
 func (c *Cpu) String() string {
-	return fmt.Sprintf("EAX: %d, AX: %d, AH: %d, AL: %d\n", c.GetEAX(), c.GetAX(), c.GetAH(), c.GetAL()) + 
+	return fmt.Sprintf("EAX: %d, AX: %d, AH: %d, AL: %d\n", c.GetEAX(), c.GetAX(), c.GetAH(), c.GetAL()) +
 		fmt.Sprintf("EBX: %d, BX: %d, BH: %d, BL: %d\n", c.GetEBX(), c.GetBX(), c.GetBH(), c.GetBL()) +
 		fmt.Sprintf("ECX: %d, CX: %d, CH: %d, CL: %d\n", c.GetECX(), c.GetCX(), c.GetCH(), c.GetCL()) +
-		fmt.Sprintf("EDX: %d, DX: %d, DH: %d, DL: %d\n", c.GetEDX(), c.GetDX(), c.GetDH(), c.GetDL())
+		fmt.Sprintf("EDX: %d, DX: %d, DH: %d, DL: %d\n", c.GetEDX(), c.GetDX(), c.GetDH(), c.GetDL()) +
+		fmt.Sprintf("Queue: %v\n", c.q)
 }
